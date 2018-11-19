@@ -14,5 +14,5 @@ public interface EmpMapper {
      * 获取emp表中所有信息
      * @return 返回泛型数据
      */
-    public List<Emp> getAll();
+    List<Emp> getAll();
 }

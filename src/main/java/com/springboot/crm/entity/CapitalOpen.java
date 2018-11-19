@@ -2,9 +2,7 @@ package com.springboot.crm.entity;
 
 import java.sql.Date;
 
-/**
- * @author Gjl
- */
+
 public class CapitalOpen {
 
     private int capEncoding;
