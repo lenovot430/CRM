@@ -29,7 +29,7 @@
         <form class="layui-form" action="">
             <%--模块一 基本信息--%>
             <fieldset class="layui-elem-field">
-                <legend><em class="layui-btn">基本信息</em></legend>
+                <legend><em class="layui-btn" id="test1">基本信息</em></legend>
                 <div class="layui-field-box">
 
                         <div class="layui-container">
@@ -89,7 +89,7 @@
                                     <div class="layui-col-md4">
                                         <label class="layui-form-label"><span class="layui-badge-dot"></span> 证件号码</label>
                                             <div class="layui-input-block">
-                                                <input type="text" id="paperNumber" autocomplete="off" class="layui-input">
+                                                <input type="text" id="paperNumber" class="layui-input">
                                             </div>
                                     </div>
                                 </div>
@@ -157,7 +157,7 @@
                                         <div class="layui-col-md5">
                                             <label class="layui-form-label"><span class="layui-badge-dot"></span> 资产资本</label>
                                             <div class="layui-input-block">
-                                                <input type="text" id="registeredCapital" placeholder="万、美金" autocomplete="off" class="layui-input">
+                                                <input type="text" id="registeredCapital" placeholder="万、美金" class="layui-input">
                                             </div>
                                         </div>
                                     </div>
@@ -177,32 +177,32 @@
                                 </div>
 
                                 <%--注册地址--%>
-                                <div class="layui-form-item" id="RegAddress">
+                                <div class="layui-form-item">
                                     <label class="layui-form-label"><span class="layui-badge-dot"></span> 注册地址</label>
                                     <div class="layui-input-inline">
-                                        <select name="RegAddress">
+                                        <select id="RegAddress1">
                                             <option value="">请选择省</option>
-                                            <option value="浙江" selected="">浙江省</option>
-                                            <option value="你的工号">江西省</option>
-                                            <option value="你最喜欢的老师">福建省</option>
+                                            <option value="0" selected="">浙江省</option>
+                                            <option value="1">江西省</option>
+                                            <option value="2">福建省</option>
                                         </select>
                                     </div>
                                     <div class="layui-input-inline">
-                                        <select name="RegAddress">
+                                        <select id="RegAddress2">
                                             <option value="">请选择市</option>
-                                            <option value="杭州">杭州</option>
-                                            <option value="宁波" disabled="">宁波</option>
-                                            <option value="温州">温州</option>
-                                            <option value="温州">台州</option>
-                                            <option value="温州">绍兴</option>
+                                            <option value="0">杭州</option>
+                                            <option value="1" disabled="">宁波</option>
+                                            <option value="2">温州</option>
+                                            <option value="3">台州</option>
+                                            <option value="4">绍兴</option>
                                         </select>
                                     </div>
                                     <div class="layui-input-inline">
-                                        <select name="RegAddress">
+                                        <select id="RegAddress3">
                                             <option value="">请选择县/区</option>
-                                            <option value="西湖区">西湖区</option>
-                                            <option value="余杭区">余杭区</option>
-                                            <option value="拱墅区">临安市</option>
+                                            <option value="0">西湖区</option>
+                                            <option value="1">余杭区</option>
+                                            <option value="2">临安市</option>
                                         </select>
                                     </div>
                                 </div>
@@ -238,7 +238,7 @@
 
                             <div class="layui-col-md12">
                                 <table class="layui-table" id="baseInfo" lay-filter="operation">
-                                   <%-- <thead>
+                                   <thead>
                                         <tr>
                                             <th lay-data="{field: 'liName', width: 150, align: 'center', align: 'center', edit: 'text'}">姓名</th>
                                             <th lay-data="{field: 'job', width: 170, align: 'center', edit: 'text'}">职位</th>
@@ -247,30 +247,30 @@
                                             <th lay-data="{field: 'Info', width: 263, align: 'center', edit: 'text'}">备注</th>
                                             <th lay-data="{field: 'score', width: 150, align: 'center', toolbar: '#barDemo'}">操作</th>
                                         </tr>
-                                        <tr id="rm" >
+                                        <tr id="tr">
                                             <td>
-                                                <input type="text" name="" lay-verify="title" autocomplete="off" class="layui-input">
+                                                <input type="text" name="liName" autocomplete="off" class="layui-input">
                                             </td>
                                             <td>
-                                                <input type="text" name="" lay-verify="title" autocomplete="off" class="layui-input">
+                                                <input type="text" name="job" autocomplete="off" class="layui-input">
                                             </td>
                                             <td>
-                                                <input type="text" name="" lay-verify="title" autocomplete="off" class="layui-input">
+                                                <input type="text" name="tel" autocomplete="off" class="layui-input">
                                             </td>
                                             <td>
-                                                <input type="text" name="" lay-verify="title" autocomplete="off" class="layui-input">
+                                                <input type="text" name="email" autocomplete="off" class="layui-input">
                                             </td>
                                             <td>
-                                                <input type="text" name="" lay-verify="title" autocomplete="off" class="layui-input">
+                                                <input type="text" name="Info" autocomplete="off" class="layui-input">
                                             </td>
                                             <td align="center">
-                                                <input type="button" class="layui-btn" style="font-size: large;" value="删除" id="ddd" onclick="abc()">
+                                                <input type="button" class="layui-btn layui-btn-normal" value="删除" onclick="abc(this);">
                                             </td>
                                         </tr>
-                                    </thead>
-                                    <tbody id="tbody">
+                                        </thead>
+                                        <tbody id="tbody">
 
-                                    </tbody>--%>
+                                        </tbody>
                                 </table>
                             </div>
                         </div>
@@ -278,9 +278,9 @@
                             <div class="layui-row layui-form-item">
 
                                 <div class="layui-col-md12">
-                                    <%--onclick="func6();"--%>
                                     <button type="button" class="layui-btn layui-btn-normal" onclick="func6();">新增一行</button>
                                 </div>
+
                             </div>
                     </div>
 
@@ -312,7 +312,7 @@
                                 </div>
                                 <div class="layui-col-md4">
                                     <div class="layui-input-block">
-                                        <button type="button" class="layui-btn layui-btn-normal" onclick="func7();">点击查询</button>
+                                        <button type="button" id="adminSelect" class="layui-btn layui-btn-normal" onclick="func7();">点击查询</button>
                                     </div>
                                 </div>
                             </div>
@@ -356,8 +356,74 @@
 <script type="text/javascript" src="../layui/jquery.min.js"></script>
 <script type="text/javascript">
     $(function(){
+        //实现数据的提交
+        $("#test1").click(function(){
+            //获取指定表单的数据
+            // alert($("[name=liName]").val());
 
+            //发送开户基本到数据库
+            $(essential());
+        });
+
+        //查询管理员信息
+        $("#adminSelect").click(function(){
+            //查询管理员信息
+            $(admin());
+        });
     });
+
+
+    /**
+     * 基本信息
+     */
+    function essential(){
+        var RegAddress=$("#RegAddress1").val()+"/"+$("#RegAddress2").val()+"/"+$("#RegAddress3").val();
+
+        $.ajax({
+            type:"POST"
+            ,data:{capEncoding:$("#capEncoding").val()
+                ,capName:$("#capName").val()
+                ,capAbbreviation:$("#capAbbreviation").val()
+                ,capType:$("#capType").val()
+                ,paperType:$("#paperType").val()
+                ,paperNumber:$("#paperNumber").val()
+                ,startTime:$("#startTime").val()
+                ,endTime:$("#endTime").val()
+                ,cooperationStart:$("#cooperationStart").val()
+                ,cooperationEnd:$("#cooperationEnd").val()
+                ,email:$("#email").val()
+                ,registeredCapital:$("#registeredCapital").val()
+                ,corporation:$("#corporation").val()
+                ,RegAddress:RegAddress
+                ,DeAddress:$("#DeAddress").val()}
+            ,url:"addCapOpen"
+            ,success:function(data){
+                alert(data);
+            }
+        });
+    }
+
+    function admin(){
+
+        if($("#retel").val()){
+
+
+            $.ajax({
+                type:""
+                ,url:"tel/"+$("retel").val()
+                ,success:function(data){
+
+                }
+            });
+
+            func7();
+
+        }else{
+            alert("请填写手机号码");
+        }
+
+    }
+
 </script>
 
 <%--删除按钮--%>
@@ -368,47 +434,38 @@
 <%--完成一些按钮事件--%>
 <script>
 
-    /*/!**
-     * 实现新增一行
-     *!/
-    function addLine() {
-        var html = "";
-        html += "<tr id='qq'><td><input type='text' name='title' lay-verify='title' autocomplete='off' class='layui-input' /></td>";
-        html += "<td><input type='text' name='title' lay-verify='title' autocomplete='off' class='layui-input' /></td>";
-        html += "<td><input type='text' name='title' lay-verify='title' autocomplete='off' class='layui-input' /></td>";
-        html += "<td><input type='text' name='title' lay-verify='title' autocomplete='off' class='layui-input' /></td>";
-        html += "<td><input type='text' name='title' lay-verify='title' autocomplete='off' class='layui-input' /></td>";
-        html += "<td align='center'><input type='button' class='layui-btn' style='font-size: large;' value='删除' onclick='dele()' id='del' /></td></tr>";
-        $("#data").append(html);
-
+    //删除一行数据
+    function abc(data) {
+        if(confirm("确定要删除这一行么？")){
+            $(data).parent().parent().remove();
+        }
     }
-    $("#add").click(function () {
-        addLine();
-    })*/
+    
     //新增一行数据
     function func6(){
 
-        alert("可惜这个功能还没有完善！");
-        /*var html ="<tr><th lay-data=\"{field: 'liName', width: 150, align: 'center', align: 'center', edit: 'text'}\">姓名</th>";
-            html+="<th>职位</th>";
-            html+="<th>手机号码</th>";
-            html+="<th>电子邮箱</th>";
-            html+="<th>备注</th>";
-            html+="<th></th></tr>";
-
-        $("#tbody").append(html);*/
+       if(confirm("是否要新增一行？")){
+        var html ="<tr><td>\n" +
+            "<input type=\"text\" name=\"liName\" lay-verify=\"title\" autocomplete=\"off\" class=\"layui-input\">\n" +
+            "</td>\n" +
+            "<td>\n" +
+            "<input type=\"text\" name=\"job\" lay-verify=\"title\" autocomplete=\"off\" class=\"layui-input\">\n" +
+            "</td>\n" +
+            "<td>\n" +
+            "<input type=\"text\" name=\"tel\" lay-verify=\"title\" autocomplete=\"off\" class=\"layui-input\">\n" +
+            "</td>\n" +
+            "<td>\n" +
+            "<input type=\"text\" name=\"email\" lay-verify=\"title\" autocomplete=\"off\" class=\"layui-input\">\n" +
+            "</td>\n" +
+            "<td>\n" +
+            "<input type=\"text\" name=\"info\" lay-verify=\"title\" autocomplete=\"off\" class=\"layui-input\">\n" +
+            "</td>\n" +
+            "<td align=\"center\">\n" +
+            "<input type=\"button\" class=\"layui-btn layui-btn-normal\"  value=\"删除\" id=\"delete\" onclick=\"abc(this);\">\n" +
+            "</td></tr>";
+        $("#tbody").append(html);
+       }
     }
-
-    //点击加号按钮时，新添一行
-    $("#addTable").click(function(){
-        var oldData =  table.cache["baseInfo"];
-        var data1={"liName":"","job":"","tel":"","email":"","Info":"","score":""};
-        oldData.push(data1);
-        table.reload('baseInfo',{
-            data : oldData
-        });
-    });
-
 
     //管理员信息查询按钮的事件
     function func7() {
@@ -561,46 +618,6 @@
         $("#capEncoding").val(timestamp);
 
         form.render();
-
-        //监听Table单元格编辑
-        table.on('edit(baseInfo)', function(obj){
-            var value = obj.value //得到修改后的值
-                ,data = obj.data //得到所在行所有键值
-                ,field = obj.field; //得到字段
-            layer.msg('[ID: '+ data.id +'] ' + field + ' 字段更改为：'+ value);
-        });
-
-        //执行渲染
-        table.render({
-            elem: '#baseInfo'
-            , cols: [[ //表头
-                {field: 'liName', title: '姓名', width: 150, align: 'center', align: 'center', edit: 'text'}
-                , {field: 'job', title: '职位', width: 170, align: 'center', edit: 'text'}
-                , {field: 'tel', title: '手机号码', width: 200, align: 'center', edit: 'text'}
-                , {field: 'email', title: '电子邮箱', width: 200, align: 'center', edit: 'text'}
-                , {field: 'Info', title: '备注', width: 263, align: 'center', edit: 'text'}
-                , {field: 'score', title: '操作', width: 150, align: 'center', toolbar: '#barDemo'}
-            ]]//设置表头
-            , data: [{
-                "liName": ""
-                ,"job": ""
-                ,"tel": ""
-                ,"email": ""
-                ,"Info": ""
-            }]
-        });
-
-        //监听工具条
-        table.on('tool(operation)', function(obj){
-            var data = obj.data;
-             if(obj.event === 'del'){
-                layer.confirm('真的删除行么', function(index){
-                    obj.del()
-                    layer.close(index);
-                });
-            }
-        });
-
 
          var laydate = layui.laydate;
         //营业开始日

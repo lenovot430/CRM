@@ -4,21 +4,7 @@
     <!--添加资方开户信息-->
     <insert id="addCapOpen" parameterType="CapitalOpen" >
         insert into CapitalOpen
-         VALUES (#{capEncoding}
-         ,#{capName}
-         ,#{capAbbreviation}
-         ,#{capType}
-         ,#{paperType}
-         ,#{paperNumber}
-         ,#{startTime}
-         ,#{endTime}
-         ,#{cooperationStart}
-         ,#{cooperationEnd}
-         ,#{email}
-         ,#{registeredCapital}
-         ,#{corporation}
-         #{RegAddress}
-         #DeAddress})
+         values (#{capEncoding},#{capName},#{capAbbreviation},#{capType},#{paperType},#{paperNumber},#{startTime},#{endTime},#{cooperationStart},#{cooperationEnd},#{email},#{registeredCapital},#{corporation},#{RegAddress},#{DeAddress})
     </insert>
 
 </mapper>

@@ -1,22 +1,28 @@
 package com.springboot.crm.entity;
 
-import java.sql.Date;
+import org.springframework.format.annotation.DateTimeFormat;
+
+import java.util.Date;
 
 
 public class CapitalOpen {
 
-    private int capEncoding;
+    private String capEncoding;
     private String capName;
     private String capAbbreviation;
     private int capType;
     private int paperType;
-    private int paperNumber;
+    private String paperNumber;
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date startTime;
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date endTime;
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date cooperationStart;
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date cooperationEnd;
     private String email;
-    private int registeredCapital;
+    private String registeredCapital;
     private String corporation;
     private String RegAddress;
     private String DeAddress;
@@ -24,7 +30,7 @@ public class CapitalOpen {
     public CapitalOpen() {
     }
 
-    public CapitalOpen(int capEncoding, String capName, String capAbbreviation, int capType, int paperType, int paperNumber, Date startTime, Date endTime, Date cooperationStart, Date cooperationEnd, String email, int registeredCapital, String corporation, String regAddress, String deAddress) {
+    public CapitalOpen(String capEncoding, String capName, String capAbbreviation, int capType, int paperType, String paperNumber, Date startTime, Date endTime, Date cooperationStart, Date cooperationEnd, String email, String registeredCapital, String corporation, String regAddress, String deAddress) {
         this.capEncoding = capEncoding;
         this.capName = capName;
         this.capAbbreviation = capAbbreviation;
@@ -42,11 +48,11 @@ public class CapitalOpen {
         DeAddress = deAddress;
     }
 
-    public int getCapEncoding() {
+    public String getCapEncoding() {
         return capEncoding;
     }
 
-    public void setCapEncoding(int capEncoding) {
+    public void setCapEncoding(String capEncoding) {
         this.capEncoding = capEncoding;
     }
 
@@ -82,11 +88,11 @@ public class CapitalOpen {
         this.paperType = paperType;
     }
 
-    public int getPaperNumber() {
+    public String getPaperNumber() {
         return paperNumber;
     }
 
-    public void setPaperNumber(int paperNumber) {
+    public void setPaperNumber(String paperNumber) {
         this.paperNumber = paperNumber;
     }
 
@@ -130,11 +136,11 @@ public class CapitalOpen {
         this.email = email;
     }
 
-    public int getRegisteredCapital() {
+    public String getRegisteredCapital() {
         return registeredCapital;
     }
 
-    public void setRegisteredCapital(int registeredCapital) {
+    public void setRegisteredCapital(String registeredCapital) {
         this.registeredCapital = registeredCapital;
     }
 

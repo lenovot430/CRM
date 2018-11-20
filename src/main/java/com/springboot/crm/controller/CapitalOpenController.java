@@ -4,6 +4,7 @@ import com.springboot.crm.entity.CapitalOpen;
 import com.springboot.crm.service.CapitalOpenService;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.annotation.Resource;
 
@@ -14,17 +15,16 @@ public class CapitalOpenController {
     private CapitalOpenService service;
 
     @RequestMapping(value = "addCapOpen")
-    public String addCapOpen(CapitalOpen capitalOpen){
+    @ResponseBody
+    public String addCapOpen(CapitalOpen capitalOpen) {
 
+        System.out.println(capitalOpen);
         int addCapOpen=service.addCapOpen(capitalOpen);
 
-     if (addCapOpen!=0){
-         return "SUCCESS";
-     }
-
-     return "ERROR";
-
+         if (addCapOpen!=0){
+             return "SUCCESS";
+         }else{
+            return "ERROR";
+         }
     }
-
-
 }

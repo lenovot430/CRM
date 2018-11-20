@@ -21,8 +21,7 @@
         <div class="layui-logo">平常金服</div>
         <!-- 头部区域（可配合layui已有的水平导航） -->
         <ul class="layui-nav layui-layout-left">
-            <li class="layui-nav-item"><a href="" target="main">控制台</a></li>
-            <li class="layui-nav-item"><a href="" target="main">商品管理</a></li>
+            <li class="layui-nav-item"><a href="" target="main">系统管理</a></li>
             <li class="layui-nav-item"><a href="" target="main">用户</a></li>
             <li class="layui-nav-item">
                 <a href="javascript:;">其它系统</a>
@@ -53,24 +52,38 @@
             <!-- 左侧导航区域（可配合layui已有的垂直导航） -->
             <ul class="layui-nav layui-nav-tree"  lay-filter="test">
                 <li class="layui-nav-item layui-nav-itemed">
-                    <a class="" href="javascript:;">所有商品</a>
+                    <a class="" href="javascript:;">资方管理</a>
                     <dl class="layui-nav-child">
                         <dd><a href="/ui.do" target="main">资方开户</a></dd>
-                        <dd><a href="javascript:;" target="main">列表二</a></dd>
+                        <dd><a href="javascript:;" target="main">资方查询</a></dd>
                         <dd><a href="javascript:;" target="main">列表三</a></dd>
-                        <dd><a href="" target="main">超链接</a></dd>
                     </dl>
                 </li>
                 <li class="layui-nav-item">
-                    <a href="javascript:;">解决方案</a>
+                    <a href="javascript:;">担保方管理</a>
                     <dl class="layui-nav-child">
-                        <dd><a href="/ui.do" target="main">列表一</a></dd>
-                        <dd><a href="javascript:;" target="main">列表二</a></dd>
-                        <dd><a href="" target="main">超链接</a></dd>
+                        <dd><a href="/ui.do" target="main">担保方开户</a></dd>
+                        <dd><a href="javascript:;" target="main">担保方查询</a></dd>
                     </dl>
                 </li>
-                <li class="layui-nav-item"><a href="" target="main">云市场</a></li>
-                <li class="layui-nav-item"><a href="" target="main">发布商品</a></li>
+                <li class="layui-nav-item">
+                    <a href="javascript:;">SP管理</a>
+                    <dl class="layui-nav-child">
+                        <dd><a href="/ui.do" target="main">SP开户</a></dd>
+                        <dd><a href="javascript:;" target="main">SP查询</a></dd>
+                    </dl>
+                </li>
+                <li class="layui-nav-item">
+                    <a href="javascript:;">合作机构管理</a>
+                    <dl class="layui-nav-child">
+                        <dd><a href="/ui.do" target="main">机构管理</a></dd>
+                        <dd><a href="javascript:;" target="main">角色管理</a></dd>
+                        <dd><a href="javascript:;" target="main">角色权限管理</a></dd>
+                        <dd><a href="javascript:;" target="main">员工管理</a></dd>
+                        <dd><a href="javascript:;" target="main">员工权限管理</a></dd>
+                    </dl>
+                </li>
+                <li class="layui-nav-item"><a href="" target="main">跨机构管理</a></li>
             </ul>
         </div>
     </div>
