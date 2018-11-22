@@ -8,12 +8,12 @@ public class CapitalOpen_Liaison {
     private int tel;
     private String email;
     private String Info;
-    private int capEncoding;
+    private String capEncoding;
 
     public CapitalOpen_Liaison() {
     }
 
-    public CapitalOpen_Liaison(int liaisonId, String liName, String job, int tel, String email, String info, int capEncoding) {
+    public CapitalOpen_Liaison(int liaisonId, String liName, String job, int tel, String email, String info, String capEncoding) {
         this.liaisonId = liaisonId;
         this.liName = liName;
         this.job = job;
@@ -71,11 +71,11 @@ public class CapitalOpen_Liaison {
         Info = info;
     }
 
-    public int getCapEncoding() {
+    public String getCapEncoding() {
         return capEncoding;
     }
 
-    public void setCapEncoding(int capEncoding) {
+    public void setCapEncoding(String capEncoding) {
         this.capEncoding = capEncoding;
     }
 

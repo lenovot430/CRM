@@ -5,7 +5,7 @@
   Time: 17:08
   To change this template use File | Settings | File Templates.
 --%>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page contentType="text/html;charset=UTF-8" language="java"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -27,6 +27,7 @@
 </blockquote>
 
         <form class="layui-form" action="">
+
             <%--模块一 基本信息--%>
             <fieldset class="layui-elem-field">
                 <legend><em class="layui-btn" id="test1">基本信息</em></legend>
@@ -228,7 +229,7 @@
 
                 <%--模块二 联系人信息--%>
             <fieldset class="layui-elem-field">
-                <legend><em class="layui-btn">联系人信息</em></legend>
+                <legend><em class="layui-btn" id="liaison">联系人信息</em></legend>
                 <div class="layui-field-box">
 
                     <div class="layui-container">
@@ -249,19 +250,19 @@
                                         </tr>
                                         <tr id="tr">
                                             <td>
-                                                <input type="text" name="liName" autocomplete="off" class="layui-input">
+                                                <input type="text" id="liName" autocomplete="off" class="layui-input">
                                             </td>
                                             <td>
-                                                <input type="text" name="job" autocomplete="off" class="layui-input">
+                                                <input type="text" id="job" autocomplete="off" class="layui-input">
                                             </td>
                                             <td>
-                                                <input type="text" name="tel" autocomplete="off" class="layui-input">
+                                                <input type="text" id="tel" autocomplete="off" class="layui-input">
                                             </td>
                                             <td>
-                                                <input type="text" name="email" autocomplete="off" class="layui-input">
+                                                <input type="text" id="liemail" autocomplete="off" class="layui-input">
                                             </td>
                                             <td>
-                                                <input type="text" name="Info" autocomplete="off" class="layui-input">
+                                                <input type="text" id="Info" autocomplete="off" class="layui-input">
                                             </td>
                                             <td align="center">
                                                 <input type="button" class="layui-btn layui-btn-normal" value="删除" onclick="abc(this);">
@@ -307,12 +308,12 @@
                                 <div class="layui-col-md4">
                                     <label class="layui-form-label">姓名</label>
                                     <div class="layui-input-block">
-                                        <input type="text" id="liName" placeholder="查询存在自动带出" class="layui-input" disabled style="color: #000000;background-color:#F0F0F0">
+                                        <input type="text" id="searchName" placeholder="查询存在自动带出" class="layui-input" disabled style="color: #000000;background-color:#F0F0F0">
                                     </div>
                                 </div>
                                 <div class="layui-col-md4">
                                     <div class="layui-input-block">
-                                        <button type="button" id="adminSelect" class="layui-btn layui-btn-normal" onclick="func7();">点击查询</button>
+                                        <button type="button" id="adminSelect" class="layui-btn layui-btn-normal">点击查询</button>
                                     </div>
                                 </div>
                             </div>
@@ -329,6 +330,15 @@
                     <div class="layui-field-box">
                         <div class="layui-container">
 
+                            <div class="layui-upload" style="margin-left: 30px;margin-right: 30px;">
+                                <div style="margin-top: 171px;float: left;"></div>
+                                <div class="layui-upload-list" style="float: left;">
+                                    <img class="layui-upload-img" id="demo1" style="width: 200px;height: 200px;margin: 0 10px 10px 0;">
+                                    <p id="demoText"></p>
+                                    <input type="hidden" name="pic" id="pic">
+                                </div>
+                                <div style="float: left;margin-top: 171px;"><button type="button" class="layui-btn" id="upload1">上传图片</button></div>
+                            </div>
                         </div>
                     </div>
                 </fieldset>
@@ -362,16 +372,20 @@
             // alert($("[name=liName]").val());
 
             //发送开户基本到数据库
-            $(essential());
+            essential();
         });
+
+        $("#liaison").click(function(){
+            liaison();
+        });
+
 
         //查询管理员信息
         $("#adminSelect").click(function(){
             //查询管理员信息
-            $(admin());
+            admin();
         });
     });
-
 
     /**
      * 基本信息
@@ -403,20 +417,47 @@
         });
     }
 
+    //添加联系人信息
+    function liaison() {
+        $.ajax({
+            type:"POST"
+            ,data:{
+                liName:$("#liName").val()
+                ,job:$("#job").val()
+                ,tel:$("#tel").val()
+                ,email:$("#liemail").val()
+                ,Info:$("#Info").val()
+                ,capEncoding:$("#capEncoding").val()
+            }
+            ,url:"addLiaison"
+            ,success:function(data){
+                alert(data);
+            }
+        });
+    }
+
+    //管理员信息查询或新增
     function admin(){
 
         if($("#retel").val()){
 
-
             $.ajax({
-                type:""
-                ,url:"tel/"+$("retel").val()
+                type:"POST"
+                ,url:"getByTel/"+parseInt($("#retel").val())
                 ,success:function(data){
 
+
+                    if(data){
+
+                        $("#searchName").val(data.adName);
+
+                    }else{
+
+                        func7();
+
+                    }
                 }
             });
-
-            func7();
 
         }else{
             alert("请填写手机号码");
@@ -478,10 +519,13 @@
             alert("请填写正确的号码");
         }else{
 
+            //设置管理员姓名为空
+            $("#searchName").val("");
+
             //获取管理员手机号
             var retel= $("#retel").val();
             //获取资方名称
-            var capName = $("#capName").val();
+            var capName = (($("#capName").val())=="" ? "机构名称为空":$("#capName").val());
 
             //prompt层
             layer.open({
@@ -509,7 +553,7 @@
                 '<span class="layui-badge-dot"></span>&nbsp;姓名' +
                 '</th>' +
                 '<td colspan="2">' +
-                    '<input type="text" class="layui-input">' +
+                    '<input id="adName" type="text" class="layui-input">' +
                 '</td>' +
                 '</tr>' +
                 '<tr>' +
@@ -517,13 +561,13 @@
                 '<span class="layui-badge-dot" ></span>&nbsp;身份证号' +
                 '</th>' +
                 '<td colspan="2">' +
-                    '<input type="text" id="idNum" class="layui-input">' +
+                    '<input type="text" id="idCard" class="layui-input">' +
                 '</td>' +
                 '<th>' +
                 '性别' +
                 '</th>' +
                 '<td colspan="2">' +
-                    '<input type="text" id="gender" class="layui-input" disabled placeholder="根据身份证自动带出"  style="color:#000000;background-color:#F0F0F0">' +
+                    '<input type="text" id="adGender" class="layui-input" disabled placeholder="根据身份证自动带出"  style="color:#000000;background-color:#F0F0F0">' +
                 '</td>' +
                 '</tr>' +
                 '<tr>' +
@@ -531,13 +575,13 @@
                 '出生日期' +
                 '</th>' +
                 '<td colspan="2">' +
-                    '<input type="text" id="birthday" class="layui-input" disabled placeholder="根据身份证自动带出"  style="color:#000000;background-color:#F0F0F0">' +
+                    '<input type="text" id="adbirthday" class="layui-input" disabled placeholder="根据身份证自动带出"  style="color:#000000;background-color:#F0F0F0">' +
                 '</td>' +
                 '<th>' +
                 '<span class="layui-badge-dot"></span>&nbsp;邮箱' +
                 '</th>' +
                 '<td colspan="2">' +
-                    '<input type="text" class="layui-input">' +
+                    '<input id="adEmail" type="text" class="layui-input">' +
                 '</td>' +
                 '</tr>' +
                 '<tr>' +
@@ -551,7 +595,7 @@
                 '角色' +
                 '</th>' +
                 '<th colspan="2">' +
-                    '<input type="text" class="layui-input" disabled value="系统管理员"  style="color:#000000;background-color:#F0F0F0">' +
+                    '<input type="text" class="layui-input" disabled value="系统管理员" style="color:#000000;background-color:#F0F0F0">' +
                 '</th>' +
                 '</tr>' +
                 '<tr>'+
@@ -559,8 +603,8 @@
                 '有效'+
                 '</th>'+
                 '<th colspan="3">' +
-                '<input type="radio" name="sex" value="是" title="是" checked="">\n' +
-                '<input type="radio" name="sex" value="否" title="否">' +
+                '<input type="radio" name="sex" value="1" title="是" checked="">\n' +
+                '<input type="radio" name="sex" value="0" title="否">' +
                 '</th>' +
                 '</tr>'+
                 '<tr>'+
@@ -568,7 +612,7 @@
                 '备注'+
                 '</th>'+
                 '<th colspan="5">' +
-                '<textarea placeholder="请输入内容" class="layui-textarea"></textarea>' +
+                '<textarea id="adinfo" placeholder="请输入内容" class="layui-textarea"></textarea>' +
                 '</th>' +
                 '</tr>'+
                 '</table>'+
@@ -576,28 +620,67 @@
                 ,success: function(layero){
                     form.render('radio');
                     var btn = layero.find('.layui-layer-btn');
+
                     btn.find('.layui-layer-btn0').attr({
 
                     });
+                }
+                ,yes:function(){
+
+                    //alert($("input:radio[name=sex]:checked").val());
+
+                    var aName =$("#adName").val();
+                    var idCard =$("#idCard").val();
+                    var adEmail = $("#adEmail").val();
+
+                    if(capName == "机构名称为空"){
+                        alert("请返回上一个页面填写资方信息！");
+                    }else if(aName == ""){
+                        alert("请填写管理员姓名");
+                    }else if(idCard == ""){
+                        alert("请填写身份证信息");
+                    }else if(adEmail == ""){
+                        alert("请填写管理员邮箱");
+                    }else{
+                        $.ajax({
+                            type:"POST"
+                            ,data:{
+                                caLoginTel:retel
+                                ,adName:aName
+                                ,idCard:idCard
+                                ,adGender: $("#adGender").val()
+                                ,adbirthday: $("#adbirthday").val()
+                                ,adEmail:adEmail
+                                ,capName:capName
+                                ,role:1
+                                ,state:$("input:radio[name=sex]:checked").val()
+                                ,adinfo:$("#adinfo").val()
+                            }
+                            ,url:"addAdmin"
+                            ,success:function(data){
+                                alert(data)
+                            }
+                        });
+                    }
                 }
             });
 
             //弹出层表单内失去焦点事件
             //当失去焦点时为其他表单绑定数据
-            $("#idNum").blur(function(){
+            $("#idCard").blur(function(){
 
-                var va =$("#idNum").val();
+                var va =$("#idCard").val();
                 var num = va.substring(16,17);
                 var birthday = va.substring(6,14);
 
                 if((num/2)==0){
-                    $("#gender").val("女");
+                    $("#adGender").val("女");
                 }else{
-                    $("#gender").val("男");
+                    $("#adGender").val("男");
                 }
 
                 if(birthday){
-                    $("#birthday").val(birthday);
+                    $("#adbirthday").val(birthday);
                 }
 
             });
@@ -608,9 +691,38 @@
 
     var form = layui.form;
 
-    layui.use(['table','laydate','form'], function() {
+    layui.use(['table','laydate','form','upload'], function() {
 
-        var table = layui.table;
+        var form = layui.form,upload = layui.upload;
+
+        var uploadInst = upload.render({
+            elem: '#upload1'
+            ,url:""
+            ,before: function(obj){
+                //预读本地文件示例，不支持ie8
+                obj.preview(function(index, file, result){
+                    $('#demo1').attr('src', result); //图片链接（base64）
+                });
+            }
+            ,done: function(res){
+                //如果上传失败
+                if(res.code > 0){//自定义返回失败
+                    return layer.msg('上传失败');
+                }else{
+                    $('#pic').val(res.img);
+                }
+                //上传成功
+            }
+            ,error: function(){
+                //演示失败状态，并实现重传
+                var demoText = $('#demoText');
+                demoText.html('<span style="color: #FF5722;">上传失败</span> <a class="layui-btn layui-btn-mini demo-reload">重试</a>');
+                demoText.find('.demo-reload').on('click', function(){
+                    uploadInst.upload();
+                });
+            }
+        });
+
         //获取当前时间戳
         var timestamp=new Date().getTime();
 

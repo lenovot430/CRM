@@ -6,6 +6,9 @@ import org.springframework.stereotype.Repository;
 
 import javax.annotation.Resource;
 
+/**
+ * @author Gjl
+ */
 @Repository
 public class CapitalOpen_LiaisonDao {
 
@@ -22,6 +25,15 @@ public class CapitalOpen_LiaisonDao {
      */
     public CapitalOpen_Liaison getLiaison(){
         return mapper.getLiaison();
+    }
+
+    /**
+     * 添加联系人信息
+     * @param liaison
+     * @return
+     */
+    public int addLiaison (CapitalOpen_Liaison liaison){
+        return mapper.addLiaison(liaison);
     }
 
 }
