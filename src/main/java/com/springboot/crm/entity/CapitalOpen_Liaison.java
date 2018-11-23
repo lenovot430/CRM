@@ -1,5 +1,8 @@
 package com.springboot.crm.entity;
 
+/**
+ * @author Gjl
+ */
 public class CapitalOpen_Liaison {
 
     private int liaisonId;

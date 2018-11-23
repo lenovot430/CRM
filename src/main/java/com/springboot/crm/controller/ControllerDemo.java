@@ -11,15 +11,7 @@ import org.springframework.web.servlet.ModelAndView;
 @Controller
 public class ControllerDemo {
 
-    @RequestMapping(value="crm")
-    public ModelAndView index(){
 
-        ModelAndView model = new ModelAndView();
-
-        model.setViewName("WEB-INF/page/index");
-
-        return model;
-    }
 
 
 

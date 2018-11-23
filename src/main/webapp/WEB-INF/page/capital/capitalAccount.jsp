@@ -48,14 +48,14 @@
                                 <div class="layui-col-md4">
                                     <label class="layui-form-label"><span class="layui-badge-dot"></span> 资方名称</label>
                                     <div class="layui-input-block">
-                                        <input type="text" id="capName" autocomplete="off" class="layui-input">
+                                        <input type="text" id="capName" required autocomplete="off" class="layui-input">
                                     </div>
                                 </div>
 
                                 <div class="layui-col-md4">
                                     <label class="layui-form-label"><span class="layui-badge-dot"></span> 资方简称</label>
                                     <div class="layui-input-block">
-                                        <input type="text" id="capAbbreviation" autocomplete="off" class="layui-input">
+                                        <input type="text" id="capAbbreviation" required autocomplete="off" class="layui-input">
                                     </div>
                                 </div>
                             </div>
@@ -227,7 +227,7 @@
                 </div>
             </fieldset>
 
-                <%--模块二 联系人信息--%>
+            <%--模块二 联系人信息--%>
             <fieldset class="layui-elem-field">
                 <legend><em class="layui-btn" id="liaison">联系人信息</em></legend>
                 <div class="layui-field-box">
@@ -244,25 +244,25 @@
                                             <th lay-data="{field: 'liName', width: 150, align: 'center', align: 'center', edit: 'text'}">姓名</th>
                                             <th lay-data="{field: 'job', width: 170, align: 'center', edit: 'text'}">职位</th>
                                             <th lay-data="{field: 'tel', width: 200, align: 'center', edit: 'text'}">手机号码</th>
-                                            <th lay-data="{field: 'email', width: 200, align: 'center', edit: 'text'}">电子邮箱</th>
+                                            <th lay-data="{field: 'lemail', width: 200, align: 'center', edit: 'text'}">电子邮箱</th>
                                             <th lay-data="{field: 'Info', width: 263, align: 'center', edit: 'text'}">备注</th>
                                             <th lay-data="{field: 'score', width: 150, align: 'center', toolbar: '#barDemo'}">操作</th>
                                         </tr>
                                         <tr id="tr">
                                             <td>
-                                                <input type="text" id="liName" autocomplete="off" class="layui-input">
+                                                <input type="text" name="liName" id="liName" autocomplete="off" class="layui-input">
                                             </td>
                                             <td>
-                                                <input type="text" id="job" autocomplete="off" class="layui-input">
+                                                <input type="text" name="job" id="job" autocomplete="off" class="layui-input">
                                             </td>
                                             <td>
-                                                <input type="text" id="tel" autocomplete="off" class="layui-input">
+                                                <input type="text" name="tel" id="tel" autocomplete="off" class="layui-input">
                                             </td>
                                             <td>
-                                                <input type="text" id="liemail" autocomplete="off" class="layui-input">
+                                                <input type="text" name="email" id="liemail" autocomplete="off" class="layui-input">
                                             </td>
                                             <td>
-                                                <input type="text" id="Info" autocomplete="off" class="layui-input">
+                                                <input type="text" name="Infos" id="Info" autocomplete="off" class="layui-input">
                                             </td>
                                             <td align="center">
                                                 <input type="button" class="layui-btn layui-btn-normal" value="删除" onclick="abc(this);">
@@ -323,40 +323,45 @@
 
             </fieldset>
 
-                <%--模块四 营业执照的上传--%>
-                <fieldset class="layui-elem-field">
+            <%--模块四 营业执照的上传--%>
+            <fieldset class="layui-elem-field">
                     <legend><em class="layui-btn">营业执照上传</em></legend>
 
                     <div class="layui-field-box">
+
                         <div class="layui-container">
 
-                            <div class="layui-upload" style="margin-left: 30px;margin-right: 30px;">
-                                <div style="margin-top: 171px;float: left;"></div>
-                                <div class="layui-upload-list" style="float: left;">
-                                    <img class="layui-upload-img" id="demo1" style="width: 200px;height: 200px;margin: 0 10px 10px 0;">
-                                    <p id="demoText"></p>
-                                    <input type="hidden" name="pic" id="pic">
+                                <div class="layui-upload" style="margin-left: 30px;margin-right: 30px;">
+
+                                    <div class="layui-upload-list" style="float: left;margin-left: 150px;">
+                                        <img class="layui-upload-img" id="demo1" style="width: 200px;height: 200px;margin: 0 10px 10px 0;">
+                                        <p id="demoText"></p>
+                                        <input type="hidden" name="pic" id="pic">
+                                    </div>
+
                                 </div>
-                                <div style="float: left;margin-top: 171px;"><button type="button" class="layui-btn" id="upload1">上传图片</button></div>
-                            </div>
+
+                                <div class="layui-col-md2">
+                                    <div style="float: left;margin-left: 300px;margin-top: 171px;"><button type="button" class="layui-btn" id="upload1">上传图片</button></div>
+                                </div>
                         </div>
                     </div>
                 </fieldset>
 
+            <%--末尾提交按钮--%>
+            <div class="layui-field-box">
+                <div class="layui-container">
+                    <%--第一行显示内容--%>
+                    <div class="layui-row layui-form-item">
 
-                <div class="layui-field-box">
-                    <div class="layui-container">
-                        <%--第一行显示内容--%>
-                        <div class="layui-row layui-form-item">
-                            <div class="layui-col-md10">
-                                <div class="layui-input-block">
-                                    <button type="button" class="layui-btn layui-btn-normal">完成</button>
-                                </div>
+                            <div class="layui-input-block" style="margin-left: 500px;">
+                                <button type="button" id="success" class="layui-btn layui-btn-normal">完成</button>
                             </div>
-                        </div>
 
                     </div>
+
                 </div>
+            </div>
 
         </form>
 
@@ -367,18 +372,24 @@
 <script type="text/javascript">
     $(function(){
         //实现数据的提交
-        $("#test1").click(function(){
+        /*$("#test1").click(function(){
             //获取指定表单的数据
             // alert($("[name=liName]").val());
 
             //发送开户基本到数据库
-            essential();
-        });
 
+        });*/
+
+        /*//联系人按钮
         $("#liaison").click(function(){
+
+        });*/
+
+        //页末尾完成按钮
+        $("#success").click(function () {
+            essential();
             liaison();
         });
-
 
         //查询管理员信息
         $("#adminSelect").click(function(){
@@ -412,29 +423,62 @@
                 ,DeAddress:$("#DeAddress").val()}
             ,url:"addCapOpen"
             ,success:function(data){
-                alert(data);
+                $.ajax({
+                    type:"POST"
+                    ,data:{liName:$("#liName").val()
+                        ,job:$("#job").val()
+                        ,tel:$("#tel").val()
+                        ,email:$("#liemail").val()
+                        ,Info:$("#Info").val()
+                        ,capEncoding:$("#capEncoding").val()}
+                    ,url:"addLiaison"
+                    ,success:function(data){
+
+                        if(confirm("信息上传完成，是否跳转到'资方查询'界面")){
+                            window.location="router?path=capital&node=capitalSearcher";
+                        }
+
+                    }
+                });
             }
         });
     }
 
     //添加联系人信息
-    function liaison() {
-        $.ajax({
-            type:"POST"
-            ,data:{
-                liName:$("#liName").val()
-                ,job:$("#job").val()
-                ,tel:$("#tel").val()
-                ,email:$("#liemail").val()
-                ,Info:$("#Info").val()
-                ,capEncoding:$("#capEncoding").val()
-            }
-            ,url:"addLiaison"
-            ,success:function(data){
-                alert(data);
-            }
-        });
-    }
+    /*function liaison() {
+
+
+        /!*var name = {};
+        var job = {};
+        var tel = {};
+        var emails = {};
+        var Info = {};
+
+        var names =document.getElementsByName("liName");
+        var jobs =document.getElementsByName("job");
+        var tels =document.getElementsByName("tel");
+        var email =document.getElementsByName("email");
+        var Infos =document.getElementsByName("Infos");
+
+        for(var i=0;i<10;i++){
+            alert(1);
+            caseVOS[i]=1;
+            alert(3)
+        }*!/
+
+        /!*for(i=0;i<names.length;i++){
+
+            alert(names[i].value);
+
+            name[i] = names[i].value;
+            job[i] = jobs[i].value;
+            tel[i] = tels[i].value;
+            emails[i] = email[i].value;
+            Info[i] = Infos[i].value;
+
+            alert(name)
+        }*!/
+    }*/
 
     //管理员信息查询或新增
     function admin(){
@@ -499,7 +543,7 @@
             "<input type=\"text\" name=\"email\" lay-verify=\"title\" autocomplete=\"off\" class=\"layui-input\">\n" +
             "</td>\n" +
             "<td>\n" +
-            "<input type=\"text\" name=\"info\" lay-verify=\"title\" autocomplete=\"off\" class=\"layui-input\">\n" +
+            "<input type=\"text\" name=\"Infos\" lay-verify=\"title\" autocomplete=\"off\" class=\"layui-input\">\n" +
             "</td>\n" +
             "<td align=\"center\">\n" +
             "<input type=\"button\" class=\"layui-btn layui-btn-normal\"  value=\"删除\" id=\"delete\" onclick=\"abc(this);\">\n" +
@@ -695,15 +739,27 @@
 
         var form = layui.form,upload = layui.upload;
 
+        //获取当前时间戳
+        var timestamp=new Date().getTime();
+
+        //绑定资方编码数据
+        $("#capEncoding").val(timestamp);
+
+        form.render();
+
+        //文件上传方法
         var uploadInst = upload.render({
             elem: '#upload1'
-            ,url:""
+            ,url:"capUpload/"+timestamp
+            ,accept:'file'
             ,before: function(obj){
                 //预读本地文件示例，不支持ie8
                 obj.preview(function(index, file, result){
                     $('#demo1').attr('src', result); //图片链接（base64）
                 });
             }
+            ,auto:false
+            ,bindAction:'#success'
             ,done: function(res){
                 //如果上传失败
                 if(res.code > 0){//自定义返回失败
@@ -722,14 +778,6 @@
                 });
             }
         });
-
-        //获取当前时间戳
-        var timestamp=new Date().getTime();
-
-        //绑定资方编码数据
-        $("#capEncoding").val(timestamp);
-
-        form.render();
 
          var laydate = layui.laydate;
         //营业开始日
