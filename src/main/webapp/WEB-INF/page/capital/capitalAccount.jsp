@@ -6,6 +6,7 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -20,11 +21,11 @@
 
 <body>
 
-<blockquote class="layui-elem-quote">
+<%--<blockquote class="layui-elem-quote">
     <fieldset class="layui-elem-field layui-field-title" style="margin-top: 20px;">
         <legend>资方开户</legend>
     </fieldset>
-</blockquote>
+</blockquote>--%>
 
         <form class="layui-form" action="">
 
@@ -181,29 +182,18 @@
                                 <div class="layui-form-item">
                                     <label class="layui-form-label"><span class="layui-badge-dot"></span> 注册地址</label>
                                     <div class="layui-input-inline">
-                                        <select id="RegAddress1">
-                                            <option value="">请选择省</option>
-                                            <option value="0" selected="">浙江省</option>
-                                            <option value="1">江西省</option>
-                                            <option value="2">福建省</option>
+                                        <select id="RegAddress1" lay-filter="province">
+                                            <option value="1">请选择市</option>
                                         </select>
                                     </div>
                                     <div class="layui-input-inline">
-                                        <select id="RegAddress2">
-                                            <option value="">请选择市</option>
-                                            <option value="0">杭州</option>
-                                            <option value="1" disabled="">宁波</option>
-                                            <option value="2">温州</option>
-                                            <option value="3">台州</option>
-                                            <option value="4">绍兴</option>
+                                        <select id="RegAddress2" lay-filter="city">
+                                            <option value="1">请选择市</option>
                                         </select>
                                     </div>
                                     <div class="layui-input-inline">
                                         <select id="RegAddress3">
-                                            <option value="">请选择县/区</option>
-                                            <option value="0">西湖区</option>
-                                            <option value="1">余杭区</option>
-                                            <option value="2">临安市</option>
+                                            <option value="1">请选择县/区</option>
                                         </select>
                                     </div>
                                 </div>
@@ -222,7 +212,7 @@
                                     </div>
                                 </div>
                             </div>
-                             <input type="button" class="layui-btn layui-btn-normal" value="详细地址">
+                             <input type="button" class="layui-btn layui-btn-normal"  value="详细地址">
                         </div>
                 </div>
             </fieldset>
@@ -371,19 +361,6 @@
 <script type="text/javascript" src="../layui/jquery.min.js"></script>
 <script type="text/javascript">
     $(function(){
-        //实现数据的提交
-        /*$("#test1").click(function(){
-            //获取指定表单的数据
-            // alert($("[name=liName]").val());
-
-            //发送开户基本到数据库
-
-        });*/
-
-        /*//联系人按钮
-        $("#liaison").click(function(){
-
-        });*/
 
         //页末尾完成按钮
         $("#success").click(function () {
@@ -735,15 +712,98 @@
 
     var form = layui.form;
 
-    layui.use(['table','laydate','form','upload'], function() {
+    layui.use(['form','laydate','table','upload'], function() {
 
         var form = layui.form,upload = layui.upload;
+
+
 
         //获取当前时间戳
         var timestamp=new Date().getTime();
 
         //绑定资方编码数据
         $("#capEncoding").val(timestamp);
+
+        $(document).ready(function(){
+
+            $.ajax({
+                type:"POST"
+                ,url:"getAll"
+                ,success:function(data){
+                    var option="";
+
+                    for(var i=0;i<data.length;i++){
+
+                        var obj =data[i];
+
+                        option +="<option value="+obj.provinceid+">"+obj.province+"</option>";
+
+                    }
+
+                    $("#RegAddress1").append(option);
+
+                    form.render();
+                }
+            })
+
+            form.on('select(province)', function(data){
+
+                $.ajax({
+                    type:"POST"
+                    ,data:{provinceid:$("#RegAddress1").val()}
+                    ,url:"getByCity"
+                    ,success:function(datas){
+                        $("#RegAddress2").empty();
+                        $("#RegAddress2").append("<option value=\"1\">请选择市</option>");
+                        $("#RegAddress3").empty();
+                        $("#RegAddress3").append("<option value=\"1\">请选择县/区</option>");
+
+                        var option="";
+
+                        for(var i=0;i<datas.length;i++){
+
+                            var obj =datas[i];
+
+                            option +="<option value="+obj.cityid+">"+obj.city+"</option>";
+
+                        }
+
+                        $("#RegAddress2").append(option);
+
+                        form.render();
+                    }
+                })
+            })
+
+            form.on('select(city)', function(data){
+
+                $.ajax({
+                    type:"POST"
+                    ,data:{cityid:$("#RegAddress2").val()}
+                    ,url:"getByAreas"
+                    ,success:function(datas){
+
+                        $("#RegAddress3").empty();
+                        $("#RegAddress3").append("<option value=\"1\">请选择县/区</option>");
+
+                        var option="";
+
+                        for(var i=0;i<datas.length;i++){
+
+                            var obj =datas[i];
+
+                            option +="<option value="+obj.areaid+">"+obj.area+"</option>";
+
+                        }
+
+                        $("#RegAddress3").append(option);
+
+                        form.render();
+                    }
+                })
+            })
+
+        });
 
         form.render();
 

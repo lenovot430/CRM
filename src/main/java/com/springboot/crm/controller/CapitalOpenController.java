@@ -16,7 +16,9 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpSession;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * @author Gjl
@@ -35,6 +37,7 @@ public class CapitalOpenController{
     @Resource
     private CapitalOpen_AdminService adminService;
 
+    //统一定义Ajax返回消息
     private final String SUCCESS ="success";
     private final String ERROR ="error";
 
@@ -114,5 +117,29 @@ public class CapitalOpenController{
         System.out.println(admin);
 
         return SUCCESS;
+    }
+
+    /**
+     * 查询资方开户的信息
+     * @return
+     */
+    @RequestMapping(value = "capitalSearcher")
+    @ResponseBody
+    public Map<String,Object> capSearcher(){
+
+        List<CapitalOpen> list=service.capSearcher();
+        Map<String,Object> result = new HashMap(16);
+
+        System.out.println(list);
+
+        //查询到的条目数
+        int count=service.capCount();
+
+        result.put("code",0);
+        result.put("msg","");
+        result.put("count",count);
+        result.put("data",list);
+
+        return result;
     }
 }

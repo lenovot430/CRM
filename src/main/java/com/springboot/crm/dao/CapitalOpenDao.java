@@ -5,6 +5,7 @@ import com.springboot.crm.mapper.CapitalOpenMapper;
 import org.springframework.stereotype.Repository;
 
 import javax.annotation.Resource;
+import java.util.List;
 
 /**
  * @author Gjl
@@ -17,6 +18,18 @@ public class CapitalOpenDao {
 
     public int addCapOpen(CapitalOpen capitalOpen){
         return mapper.addCapOpen(capitalOpen);
+    }
+
+    public List<CapitalOpen> capSearcher(){
+        return mapper.capSearcher();
+    }
+
+    public List<CapitalOpen> getByName(String capName){
+        return mapper.capSearcher();
+    }
+
+    public int capCount(){
+        return mapper.capCount();
     }
 
 }

@@ -7,4 +7,18 @@
          values (#{capEncoding},#{capName},#{capAbbreviation},#{capType},#{paperType},#{paperNumber},#{startTime},#{endTime},#{cooperationStart},#{cooperationEnd},#{email},#{registeredCapital},#{corporation},#{RegAddress},#{DeAddress})
     </insert>
 
+    <!--查询所有资方开户的信息-->
+    <select id="capSearcher" resultType="CapitalOpen">
+        SELECT * FROM CapitalOpen
+    </select>
+
+    <!--查询指定资方开户的信息-->
+    <select id="getByName" resultType="CapitalOpen" parameterType="String">
+        SELECT * FROM CapitalOpen WHERE capName LIKE #{capName}
+    </select>
+
+    <!--查询资方开户的所有条目-->
+    <select id="capCount" resultType="int">
+         SELECT COUNT(*) FROM CapitalOpen
+    </select>
 </mapper>

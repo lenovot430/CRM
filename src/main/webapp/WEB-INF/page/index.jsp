@@ -54,8 +54,8 @@
                 <li class="layui-nav-item layui-nav-itemed">
                     <a class="" href="javascript:;">资方管理</a>
                     <dl class="layui-nav-child">
-                        <dd><a href="/ui.do" target="main">资方开户</a></dd>
-                        <dd><a href="javascript:;" target="main">资方查询</a></dd>
+                        <dd><a href="router?path=capital&node=capitalAccount" target="main">资方开户</a></dd>
+                        <dd><a href="router?path=capital&node=capitalSearcher" target="main">资方查询</a></dd>
                         <dd><a href="javascript:;" target="main">列表三</a></dd>
                     </dl>
                 </li>
@@ -96,7 +96,7 @@
 
     <div class="layui-footer">
         <!-- 底部固定区域 -->
-        © layui.com - 底部固定区域
+        © PA - 平安金服
     </div>
 </div>
 <script src="../layui/layui.all.js"></script>

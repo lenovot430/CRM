@@ -40,11 +40,11 @@
 			<scope>test</scope>
 		</dependency>
 
-		<!-- JSTL (JSP standard Tag Library) JSP 标准标签库
+		<!-- JSTL (JSP standard Tag Library) JSP 标准标签库-->
 		<dependency>
 			<groupId>javax.servlet</groupId>
 			<artifactId>jstl</artifactId>
-		</dependency>-->
+		</dependency>
 
 		<!--servlet支持开启-->
 		<dependency>
@@ -87,13 +87,17 @@
 			<artifactId>spring-boot-devtools</artifactId>
 			<optional>true</optional> <!-- 这个需要为 true 热部署才有效 -->
 		</dependency>
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter-api</artifactId>
+        </dependency>
 
-		<!-- 阿里巴巴druid连接池依赖
-		<dependency>
-			<groupId>com.alibaba</groupId>
-			<artifactId>druid</artifactId>
-			<version>1.1.12</version>
-		</dependency>-->
+        <!-- 阿里巴巴druid连接池依赖
+        <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>druid</artifactId>
+            <version>1.1.12</version>
+        </dependency>-->
 
 
 		<!--

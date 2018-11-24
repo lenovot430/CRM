@@ -5,6 +5,7 @@ import com.springboot.crm.entity.CapitalOpen;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.util.List;
 
 /**
  * @author Gjl
@@ -21,6 +22,29 @@ public class CapitalOpenService {
      */
     public int addCapOpen(CapitalOpen capitalOpen){
         return dao.addCapOpen(capitalOpen);
+    }
+
+    /**
+     * 查询所有资方以开户信息
+     * @return
+     */
+    public List<CapitalOpen> capSearcher(){
+
+        return dao.capSearcher();
+
+    }
+
+    /**
+     * 模糊查询资方开户名
+     * @param capName
+     * @return
+     */
+    public List<CapitalOpen> getByName(String capName){
+        return dao.getByName("%"+capName+"%");
+    }
+
+    public int capCount(){
+        return dao.capCount();
     }
 
 }
